@@ -1,6 +1,11 @@
+import os
 import pandas as pd
-BRONZE_PATH = r"C:\Users\pratik\Desktop\prop\DE\New folder\retail-dwh-pipeline\data\bronze\online_retail_raw.csv"
+from config import BRONZE_PATH
 
-def extarct_bronze():
+def extract_bronze():
+    print("Extracting bronze data...")
+    print("Resolved BRONZE_PATH:", BRONZE_PATH)
+    print("File exists?", os.path.exists(BRONZE_PATH))
+
     df = pd.read_csv(BRONZE_PATH, encoding="ISO-8859-1")
     return df

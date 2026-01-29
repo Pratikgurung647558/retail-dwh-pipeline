@@ -20,7 +20,13 @@ def bronze_to_silver(df):
     df['total_amount'] = np.round(
         df['Quantity'] * df['UnitPrice'], 2
     )
-
+    
+    # Remove zero revenue items
+    df = df[df['total_amount'] > 0]
+    
+    # Remove duplicates - ADD THIS
+    df = df.drop_duplicates(subset=['InvoiceNo', 'StockCode'])
+    
     # Save Silver layer
     df.to_parquet(SILVER_PATH, index=False)
 
